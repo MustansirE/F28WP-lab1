@@ -142,17 +142,17 @@ main h3 {
 .cta-container {
     text-align: center;
     padding: 25px;
-    background-color: #259dbb;
+    background-color: #7A65E0;
     color: #ffffff;
     font-size: 20px;
     margin: 30px;
-    border: #d82192;
+    border: #1C1B61;
     border-style: double;
     border-width: 1px;
 }
 
 .cta-container h2{
-    font-family: cursive;
+    font-family: monospace;
     text-transform: uppercase;
 }
 
@@ -164,7 +164,7 @@ main h3 {
 .cta-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #d82192;
+    background-color: #E0D265;
     color: #ffffff;
     text-decoration: none;
     border-radius: 25px;
@@ -174,7 +174,7 @@ main h3 {
 }
 
 .cta-button:hover {
-    background-color: #682a58;
+    background-color: #948725;
 }
 
 /* Footer Styles */
