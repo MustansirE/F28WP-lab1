@@ -70,6 +70,7 @@ nav a:hover {
     height: auto;
     width: 100%;
     overflow: hidden;
+    margin: 35px 0px 0px 0px;
 }
 
 .centered-banner {

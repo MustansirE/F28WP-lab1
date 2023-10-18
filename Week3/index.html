@@ -30,7 +30,7 @@
 
     <!-- Banner Section -->
     <section class="banner-container">
-      <img src="images/travel banner.svg" alt="Illustrative banner of travel destinations" class="centered-banner">
+      <img name="slide" alt="Alt goes here" title="Destinations we travel to" width="75%"/>
     </section>
 
     <!-- Main Content Section -->
@@ -104,5 +104,22 @@
       <p>&copy; 2024 Wanderlust Voyages | Travel Agency. All rights reserved.</p>
     </footer>
   </div>
+
+  <script>
+    var i = 0;
+    images = ["slide1.png", "slide2.png", "slide3.png", "slide4.png", "slide5.png", "slide6.png", "slide7.png", "slide8.png"];
+    var t = 5000;
+    function changeImg(){
+      document.slide.src = "images/" + images[i];
+      if(i < images.length - 1){
+        i++;
+      } else {
+        i = 0;
+      }
+      setTimeout("changeImg()", t);
+    }
+    window.onload = changeImg;
+
+  </script>
 </body>
 </html>
