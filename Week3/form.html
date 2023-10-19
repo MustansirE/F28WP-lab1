@@ -66,9 +66,9 @@
     </head>
 
     <body>
-        <form id = 'form'>
+        <form id = 'form' onsubmit="return false">
 
-            <h1> Form </h1>
+            <h1> Sign Up </h1><br>
             <div class = "input-control">
                 <label for = "fname" class = "input-control"> Username: </label><br>
                 <input type = "text" name = "fname" id = "uname"><br>
@@ -88,12 +88,14 @@
             </div>
 
             <div class="input-control">
-                <label for = "fname" class = "input-control"> Confirm Password: </label><br>
-                <input type = "password" name = "fname" id = "cpass "><br><br>
+                <label for = "cpname" class = "input-control"> Confirm Password: </label><br>
+                <input type = "password" name = "cpname" id = "cpass"><br>
                 <div class = "error"  id = "cperror"></div>
             </div>
 
-            <input type = "submit" name = "fname" class = "input-control" id = "button" onclick="validation()"><br>
+            
+            <button type="submit" onclick="check()">Submit</button>
+            
 
         </form>
     </body>
@@ -105,14 +107,20 @@
             const pass = document.getElementById("pass");
             const cpass = document.getElementById("cpass");
 
+            var ucheck = false;
+            var echeck = false;
+            var pcheck = false;
+            var cpcheck = false;
+
             const uerror = document.getElementById("uerror");
             const eerror = document.getElementById("eerror");
             const perror = document.getElementById("perror");
             const cperror = document.getElementById("cperror");
+            let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-            if (uname.value.length <= 3){
+            if (uname.value.length == 0){
                 uname.classList.add("error");
-                uerror.textContent = "Username must be greater than 3 characters";
+                uerror.textContent = "Username must be greater than 0 characters";
                 uname.style.borderColor = "red";
 
             } else {
@@ -120,11 +128,12 @@
                 uname.classList.add("success");
                 uerror.textContent = "";
                 uname.style.borderColor = "green";
+                ucheck = true;
             }
 
-            if (!email.value.includes("@")){
+            if (!email.value.match(validRegex)){
                 email.classList.add("error");
-                eerror.textContent = "Email must contain @ symbol";
+                eerror.textContent = "Email is not valid";
                 email.style.borderColor = "red";
 
             } else {
@@ -132,6 +141,7 @@
                 email.classList.add("success");
                 eerror.textContent = "";
                 email.style.borderColor = "green";
+                echeck = true;
             }
 
             if (pass.value.length < 8){
@@ -144,26 +154,54 @@
                 pass.classList.add("success");
                 perror.textContent = "";
                 pass.style.borderColor = "green";
+                pcheck = true;
             }
 
-            if (cpass.value !== pass.value){
-
+            if (cpass.value !== pass.value || cpass.value.length == 0) {
                 cpass.classList.add("error");
                 cperror.textContent = "Password does not match";
                 cpass.style.borderColor = "red";
-
-            } else {         
+            } else {
                 cpass.classList.remove("error");
                 cpass.classList.add("success");
                 cperror.textContent = "";
                 cpass.style.borderColor = "green";
+                cpcheck = true;
             }
-
+            
         }
-        document.getElementById("uname").addEventListener("blur",validation);
-        document.getElementById("email").addEventListener("blur",validation);
-        document.getElementById("pass").addEventListener("blur",validation);
-        document.getElementById("cpass").addEventListener("blur",validation);
+
+        document.getElementById("uname").addEventListener("input",validation);
+        document.getElementById("email").addEventListener("input",validation); v
+        document.getElementById("pass").addEventListener("input",validation);
+        document.getElementById("cpass").addEventListener("input", validation);
+
+        function check(){
+            const uname = document.getElementById("uname");
+            const email = document.getElementById("email");
+            const pass = document.getElementById("pass");
+            const cpass = document.getElementById("cpass");
+            let check;
+            
+                if (uname.classList.contains("success") && email.classList.contains("success") && pass.classList.contains("success") && cpass.classList.contains("success")) {
+                    check = true;
+                } else {
+                    check = false;
+                }
+
+                if (check == true){
+                    alert("Form submitted successfully");
+                    uname.value = "";
+                    email.value = "";
+                    pass.value = "";
+                    cpass.value = "";
+                    return true;
+                } else {
+                    alert("Form not submitted");
+                    return false;
+                }
+        }
+        
         
     </script>
 
