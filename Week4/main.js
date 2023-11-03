@@ -23,16 +23,17 @@ function renderHTML(data){
             htmlString += ", and " + data[i].places.indoor[ii];
             }
         }
-}
-htmlString += '. & enjoy outdoor places like: ';
-// Loop through the outdoor places of the current city.
-for (ii = 0; ii < data[i].places.outdoor.length; ii++) {
-    if (ii == 0) {
-    htmlString += data[i].places.outdoor[ii];
-    } else {
-    htmlString += " and " + data[i].places.outdoor[ii];
+    
+    htmlString += '. & enjoy outdoor places like: ';
+    // Loop through the outdoor places of the current city.
+    for (ii = 0; ii < data[i].places.outdoor.length; ii++) {
+        if (ii == 0) {
+        htmlString += data[i].places.outdoor[ii];
+        } else {
+        htmlString += " and " + data[i].places.outdoor[ii];
+        }
     }
+    htmlString += '.</p>';
+    }
+    cityContainer.insertAdjacentHTML('beforeend' , htmlString);
 }
-htmlString += '.</p>';
-}
-cityContainer.insertAdjacentHTML('beforeend' , htmlString);
